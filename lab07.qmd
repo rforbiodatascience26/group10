@@ -10,11 +10,11 @@ library(here)
 library(tidyverse)
 ```
 
-
 ## Load Data
+
+We are gonna be using the `biopsy` dataset. It is a breast cancer dataset from the University of Wisconsin Hospitals, Madison. The dataset contains biopsies of breast tumors for 699 patients. The nine attributes was scored on a scale of 1 to 10. The true outcome of the biopsies are also known (benign/malignant).
+
 ```{r}
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 biopsy
 ```
-
-
