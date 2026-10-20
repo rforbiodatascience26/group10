@@ -8,18 +8,17 @@ editor: visual
 
 Group 10:
 
-- Luis Galán: s235397
+-   Luis Galán: s235397
 
-- Laura Jensen: s235427
+-   Laura Jensen: s235427
 
-- Taniya Dey: s263756
+-   Taniya Dey: s263756
 
-- Thota Kanishka Rao: s263780
-
+-   Thota Kanishka Rao: s263780
 
 ## Load Libraries
 
-```{r}
+```{r, message=FALSE}
 library(here)
 library(tidyverse)
 ```
