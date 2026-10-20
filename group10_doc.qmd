@@ -9,6 +9,16 @@ format: html
 
 # Luis
 
+Hello
+```{r}
+print('hello')
+```
+
+```{r}
+one_plus_one = 1 + 1
+print(one_plus_one)
+```
+
 # Christopher
 
 # Taniya
