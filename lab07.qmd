@@ -32,16 +32,15 @@ We use the biopsy dataset, which contains breast tumour biopsy data from 699 pat
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 biopsy
 ```
-## PCA: data in PC coordinates
 
-We keep only the numeric columns, scale them and run a PCA. We then add the original data back with augment(), so we can colour the samples by outcome.
 
 ## Principal Component Analysis
 
 We use principal component analysis (PCA) to summarize the nine numeric attributes in fewer dimensions. We first select the numeric columns and scale the variables to have a standard deviation of 1. This prevents variables with more variation from dominating the analysis. The biopsy outcome is not included in the PCA.
 
 ```{r}
-pca_fit <- biopsy |>
+# Keep only numeric columns and run a PCA on scaled data
+pca_fit <- biopsy |> 
   select(where(is.numeric)) |>
   prcomp(scale = TRUE)
 
