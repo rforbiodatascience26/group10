@@ -26,13 +26,16 @@ library(broom)
 
 ## Load Data
 
-We are gonna be using the `biopsy` dataset. It is a breast cancer dataset from the University of Wisconsin Hospitals, Madison. The dataset contains biopsies of breast tumors for 699 patients. The nine attributes was scored on a scale of 1 to 10. The true outcome of the biopsies are also known (benign/malignant).
+We use the biopsy dataset, which contains breast tumour biopsy data from 699 patients at the University of Wisconsin Hospitals in Madison. The dataset includes nine attributes scored from 1 to 10, together with the outcome of each biopsy: benign or malignant. We want to explore whether these attributes show any patterns that separate the two outcomes.
 
 ```{r}
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 biopsy
 ```
 
+## Principal Component Analysis
+
+We use principal component analysis (PCA) to summarize the nine numeric attributes in fewer dimensions. We first select the numeric columns and scale the variables to have a standard deviation of 1. This prevents variables with more variation from dominating the analysis. The biopsy outcome is not included in the PCA.
 
 ```{r}
 pca_fit <- biopsy |>
@@ -41,6 +44,9 @@ pca_fit <- biopsy |>
 
 pca_fit
 ```
+## PCA Score Plot
+
+We plot the first two principal components and color the points by biopsy outcome. Each point represents one patient, and patients with similar scores across the nine attributes will appear closer together. The colors help us see whether benign and malignant samples form separate groups or overlap.
 
 ```{r}
 pca_fit %>%
@@ -49,6 +55,11 @@ pca_fit %>%
   geom_point() +
   theme_minimal()
 ```
+We can see that the benign and malignant samples are mostly separated along PC1, although there is some overlap. The benign samples form a fairly tight cluster on the right, while the malignant samples are more spread out on the left. This suggests that the measured attributes capture differences between the two groups.
+
+## Loading Plot
+
+The loading plot shows how the original attributes contribute to the first two principal components. Arrows pointing in similar directions indicate attributes that vary together in these two components. The arrow lengths show how strongly the attributes are represented in this view.
 
 ```{r}
 arrow_style <- arrow(
@@ -71,6 +82,12 @@ pca_fit |>
   theme_minimal()
 ```
 
+All nine attributes have negative loadings on PC1, meaning that higher attribute scores pull samples towards the left in the score plot. This fits with the malignant samples mainly being on that side. Most arrows point in similar directions, while mitoses stands out with a large positive loading on PC2. Mitoses therefore contributes strongly to the variation shown along PC2.
+
+## Explained Variance
+
+Finally, we plot the proportion of variance explained by each principal component. The first component explains the most variation, and each following component explains a smaller amount. This helps us assess how much information we keep when we show the data using only the first two components.
+
 ```{r}
 pca_fit |>
   tidy(matrix = "eigenvalues") |>
@@ -80,3 +97,5 @@ pca_fit |>
   scale_y_continuous(labels = scales::percent_format()) +
   theme_minimal()
 ```
+PC1 explains approximately 66% of the total variation, while PC2 explains around 9%. Together, they capture about 75% of the variation in the data. This means that our two-dimensional PCA plot keeps most of the variation from the original nine attributes, although some information is left out.
+
