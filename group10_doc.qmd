@@ -3,18 +3,24 @@ title: "group10_doc"
 format: html
 ---
 
-
-
 # Laura
 
 ```{r}
 print("Welcome to Miami!")
 ```
 
+## New feature
+
+This is somthing new!
+
+```{r}
+print("This is somthing new!")
+```
 
 # Luis
 
 Hello
+
 ```{r}
 print('hello')
 ```
