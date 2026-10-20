@@ -3,18 +3,24 @@ title: "group10_doc"
 format: html
 ---
 
-
-
 # Laura
 
 ```{r}
 print("Welcome to Miami!")
 ```
 
+## New feature
+
+This is somthing new!
+
+```{r}
+print("This is somthing new!")
+```
 
 # Luis
 
 Hello
+
 ```{r}
 print('hello')
 ```
@@ -22,6 +28,12 @@ print('hello')
 ```{r}
 one_plus_one = 1 + 1
 print(one_plus_one)
+```
+
+## new super cool analysis
+```{r}
+one_plus_three = 1 + 3
+print(one_plus_three)
 ```
 
 # Christopher
