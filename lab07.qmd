@@ -13,3 +13,24 @@ biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 biopsy
 ```
 
+## PCA: data in PC coordinates
+
+We keep only the numeric columns, scale them and run a PCA. We then add the original data back with augment(), so we can colour the samples by outcome.
+
+```{r}
+library(broom)
+
+pca_fit <- biopsy |>
+  select(where(is.numeric)) |>
+  scale() |>
+  prcomp()
+
+pca_fit |>
+  augment(biopsy) |>
+  ggplot(aes(x = .fittedPC1, y = .fittedPC2, colour = outcome)) +
+  geom_point(size = 1.5, alpha = 0.7) +
+  scale_colour_manual(values = c(malignant = "#D55E00", benign = "#0072B2")) +
+  labs(x = "PC1", y = "PC2", colour = "Outcome") +
+  theme_minimal()
+
+```
