@@ -1,7 +1,21 @@
 ---
-title: "lab07"
-format: html
+title: "Lab 7 Assignment: Group 10"
+format:
+  html:
+    embed-resources: true
+editor: visual
 ---
+
+Group 10:
+
+- Luis Galán: s235397
+
+- Laura Jensen: s235427
+
+- Taniya Dey: s263756
+
+- Thota Kanishka Rao: s263780
+
 
 ## Load Libraries
 
